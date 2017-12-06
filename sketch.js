@@ -1,19 +1,61 @@
-function setup()
-{
-  createCanvas(500,500);
+var screen="intro";
+var x=0;
+function setup() { 
+  createCanvas(400, 400);
+} 
+
+function draw() { 
+	console.log(screen,"b");
+  switch(screen)
+	{
+		case "intro":intro(); break;
+		case "select":select(); break;
+		case "ingame":ingame(); break;
+	}
+	console.log(screen,"d");
 }
-function draw()
+
+function intro()
 {
-  f();
+	background(255);
+	console.log(key);
+  if(keyIsPressed)
+  {
+    if(key=="x")
+    {
+      screen="select";
+      return;
+    }
+    if(key=="c")
+    {
+      screen="ingame";
+      return;
+    }
+  }
 }
-function f()
+function select()
 {
-  background(0);
-  var x=0;
-  var y=250;
-  ellipse(x,y,30,30);
+	background(128);
+	if(mouseIsPressed)
+	{
+		if(mouseX<width/2)
+		{
+			screen="intro";
+			return;
+		}
+		else
+		{
+			screen="ingame";
+			return;
+		}
+	}
 }
-function touchStarted()
+function ingame()
 {
-  background(128);
+	background(0);
+	if(mouseIsPressed)
+	{
+		screen="intro";
+		return;
+	}
 }
