@@ -9,7 +9,7 @@ function draw() {
   switch(screen)
 	{
 		case "intro":intro(); break;
-		case "select":select(); break;
+		case "select":selection(); break;
 		case "ingame":ingame(); break;
 	}
 	console.log(screen,"d");
@@ -33,7 +33,7 @@ function intro()
     }
   }
 }
-function select()
+function selection()
 {
 	background(128);
 	if(mouseIsPressed)
