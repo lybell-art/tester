@@ -11,11 +11,7 @@ function f()
   background(0);
   var x=0;
   var y=250;
-  while(true)
-  {
-    ellipse(x,y,30,30);
-  }
-  x++;
+  ellipse(x,y,30,30);
 }
 function touchStarted()
 {
