@@ -3,13 +3,13 @@ function setup() {
 	grid();
 	background(0);
 	console.log(screenControl);
-	screenControl.setting(400,400);
+	screenControl.set(400,400);
 	background(60);
 	console.log(1);
 } 
 
 function draw() { 
-  background(255);
+	background(255);
 	console.log(screenControl.w);
 	screenControl.setScreen();
 	grid();
