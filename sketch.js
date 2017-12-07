@@ -1,61 +1,67 @@
-var screen="intro";
-var x=0;
-function setup() { 
+function setup() {
   createCanvas(400, 400);
+	grid();
+	background(0);
+	screenControl.setting(400,400);
+	background(60);
+	console.log(1);
 } 
 
 function draw() { 
-	console.log(screen,"b");
-  switch(screen)
-	{
-		case "intro":intro(); break;
-		case "select":selection(); break;
-		case "ingame":ingame(); break;
-	}
-	console.log(screen,"d");
+  background(255);
+	console.log(screenControl.w);
+	screenControl.setScreen();
+	grid();
+}
+function mouseWheel(event)
+{
+	var newZoom=screenControl.zoom+0.001*event.delta;
+	screenControl.zoom(newZoom,mouseX,mouseY);
 }
 
-function intro()
+function grid()
 {
-	background(255);
-	console.log(key);
-  if(keyIsPressed)
-  {
-    if(key=="x")
-    {
-      screen="select";
-      return;
-    }
-    if(key=="c")
-    {
-      screen="ingame";
-      return;
-    }
-  }
-}
-function selection()
-{
-	background(128);
-	if(mouseIsPressed)
+	for(var i=0;i<40;i++)
 	{
-		if(mouseX<width/2)
+		for(var j=0;j<40;j++)
 		{
-			screen="intro";
-			return;
-		}
-		else
-		{
-			screen="ingame";
-			return;
+			rect(i*10,j*10,10,10);
 		}
 	}
 }
-function ingame()
+
+var screenControl=function(w,h)
 {
-	background(0);
-	if(mouseIsPressed)
-	{
-		screen="intro";
-		return;
-	}
+	this.w=w;
+	this.h=h;
+	this.ox=0;
+	this.oy=0;
+	this.zoom=1;
+};
+screenControl.prototype.setting=function(w,h)
+{
+	this.ox=(width-w)/2;
+	this.oy=(height-h)/2;
+}
+screenControl.prototype.move=function(dx,dy)
+{
+	this.ox+=dx;
+	this.oy+=dy;
+}
+screenControl.prototype.zoom=function(newZoom,pinX,pinY)
+{
+	var ratio=newZoom/this.zoom;
+	this.ox=pinX-(pinX-this.ox)*ratio;
+	this.oy=pinY-(pinY-this.oy)*ratio;
+	this.zoom=newZoom;
+}
+screenControl.prototype.setScreen=function()
+{
+	translate(this.ox,this.oy);
+	translate(this.zoom);
+}
+screenControl.prototype.relativeMouse=function()
+{
+	var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
+	return res;
 }
