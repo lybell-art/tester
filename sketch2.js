@@ -1,27 +1,39 @@
 var broadcast;
-var r=false;
-var pp=0;
-var cell, cell2;
+var cell=[];
 function setup()
 {
 	createCanvas(500,500);
 	broadcast=new BROADCAST();
-	cell=new CELL(3,3,3,0);
-	cell2=new CELL(3,4,1,0);
+	for(var i=0;i<30;i++)
+	{
+		for(var j=0;j<30;j++)
+		{
+			cell[i][j]=new CELL(i,j,1,0);
+		}
+	}
 }
 function draw()
 {
+	var i,j;
+	background(255);
 	broadcast.renew();
 	if(broadcast.isMousePress)
 	{
-		if(cell.isMouseOn()) r=!r;
-		if(cell2.isMouseOn()) pp++;
+		for(i=0;i<30;i++)
+		{
+			for(j=0;j<30;j++)
+			{
+				if(cell[i][j].isMouseOn()) cell[i][j].switch=!(cell[i][j].switch);
+			}
+		}
 	}
-	if(r) background(0);
-	else background(128);
-	cell.draw();
-	cell2.draw();
-	console.log(pp)
+	for(i=0;i<30;i++)
+	{
+		for(j=0;j<30;j++)
+		{
+			cell[i][j].draw();
+		}
+	}
 }
 function mousePressed()
 {
@@ -57,17 +69,15 @@ function CELL(i,j,kind,who)
 	this.who=who;
 	this.r=30;
 	if(this.kind==3) this.r=40;
+	this.switch=false;
 }
-/**
- *
- * 지정된 위치에 셀을 화면에 그림
- *
- */
 CELL.prototype.draw=function()
 {
 	var pos=createVector(this.x,this.y);
 	var edge=createVector(this.r,0);
 	var p=createVector();
+	if(this.switch) fill("#ffff00");
+	else fill("#555555");
 	beginShape();
 	for(var i=0;i<6;i++)
 	{
@@ -77,13 +87,6 @@ CELL.prototype.draw=function()
 	}
 	endShape(CLOSE);
 }
-/**
- *
- * 셀에 마우스가 닿았는지를 체크
- *
- * @return {boolean}	마우스가 닿았는지의 여부
- *
- */
 CELL.prototype.isMouseOn=function()
 {
 	var mousePos=createVector(mouseX-this.x,mouseY-this.y);
