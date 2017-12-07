@@ -1,11 +1,11 @@
 var screenControl;
 function setup() {
-  createCanvas(400, 400);
+	createCanvas(400, 400);
 	screenControl=new SCREEN_CONTROL(400,400);
 }
 
 function draw() { 
-  background(255);
+	background(255);
 	screenControl.setScreen();
 	console.log(screenControl.zoom);
 	grid();
@@ -40,6 +40,7 @@ SCREEN_CONTROL.prototype.move=function(dx,dy)
 {
 	this.ox+=dx;
 	this.oy+=dy;
+	this.limit();
 }
 SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 {
@@ -47,6 +48,18 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 	this.ox=pinX-(pinX-this.ox)*ratio;
 	this.oy=pinY-(pinY-this.oy)*ratio;
 	this.zoom=newZoom;
+	this.limit();
+}
+SCREEN_CONTROL.prototype.limit=function()
+{
+	var wLimit=this.w*this.zoom-width;
+	var hLimit=this.h*this.zoom-height;
+	if(wLimit>0) this.ox=constrain(this.ox,0,wLimit);
+	else this.ox=-wLimit/2;
+	if(hLimit>0) this.ox=constrain(this.ox,0,hLimit);
+	else this.ox=-hLimit/2;
+	var zoomMin=min(width/this.w,height/this.h,1);
+	this.zoom=constrain(this.zoom,zoomMin,4);
 }
 SCREEN_CONTROL.prototype.setScreen=function()
 {
