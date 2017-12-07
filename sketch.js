@@ -2,7 +2,7 @@ function setup() {
 	createCanvas(400, 400);
 	grid();
 	background(0);
-	console.log(screenControl);
+	console.log(screenControl.set, screenControl.move);
 	screenControl.set(400,400);
 	background(60);
 	console.log(1);
