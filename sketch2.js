@@ -6,6 +6,7 @@ function setup()
 	broadcast=new BROADCAST();
 	for(var i=0;i<30;i++)
 	{
+		cell[i]=[];
 		for(var j=0;j<30;j++)
 		{
 			cell[i][j]=new CELL(i,j,1,0);
