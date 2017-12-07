@@ -2,7 +2,7 @@ var broadcast;
 var cell=[];
 function setup()
 {
-	createCanvas(500,500);
+	createCanvas(windowWidth,windowHeight);
 	broadcast=new BROADCAST();
 	for(var i=0;i<30;i++)
 	{
