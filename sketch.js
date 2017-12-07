@@ -31,7 +31,7 @@ function grid()
 	}
 }
 
-var screenControl=function(w,h)
+var screenControl=(function(w,h)
 {
 	this.w=w;
 	this.h=h;
@@ -65,4 +65,4 @@ var screenControl=function(w,h)
 		var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
 		return res;
 	}
-};
+})();
