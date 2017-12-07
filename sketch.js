@@ -31,15 +31,17 @@ function grid()
 	}
 }
 
-var screenControl=(function(w,h)
+var screenControl=(function()
 {
-	this.w=w;
-	this.h=h;
+	this.w=0;
+	this.h=0;
 	this.ox=0;
 	this.oy=0;
 	this.zoom=1;
 	this.set=function(w,h)
 	{
+		this.w=w;
+		this.h=h;
 		this.ox=(width-w)/2;
 		this.oy=(height-h)/2;
 	}
