@@ -1,7 +1,8 @@
 function setup() {
-  createCanvas(400, 400);
+	createCanvas(400, 400);
 	grid();
 	background(0);
+	console.log(screenControl);
 	screenControl.setting(400,400);
 	background(60);
 	console.log(1);
