@@ -1,23 +1,20 @@
+var screenControl;
 function setup() {
-	createCanvas(400, 400);
-	grid();
-	background(0);
-	console.log(screenControl.set, screenControl.move);
-	screenControl.set(400,400);
-	background(60);
-	console.log(1);
+  createCanvas(400, 400);
+	screenControl=new SCREEN_CONTROL(400,400);
 } 
 
 function draw() { 
-	background(255);
-	console.log(screenControl.w);
+  background(255);
 	screenControl.setScreen();
+	console.log(screenControl.zoom);
 	grid();
 }
 function mouseWheel(event)
 {
 	var newZoom=screenControl.zoom+0.001*event.delta;
-	screenControl.zoom(newZoom,mouseX,mouseY);
+	console.log(newZoom);
+	screenControl.scale(newZoom,mouseX,mouseY);
 }
 
 function grid()
@@ -31,40 +28,33 @@ function grid()
 	}
 }
 
-var screenControl=(function()
+function SCREEN_CONTROL(w,h)
 {
-	this.w=0;
-	this.h=0;
-	this.ox=0;
-	this.oy=0;
+	this.w=w;
+	this.h=h;
+	this.ox=(width-w)/2;
+	this.oy=(height-h)/2;
 	this.zoom=1;
-	this.set=function(w,h)
-	{
-		this.w=w;
-		this.h=h;
-		this.ox=(width-w)/2;
-		this.oy=(height-h)/2;
-	}
-	this.move=function(dx,dy)
-	{
-		this.ox+=dx;
-		this.oy+=dy;
-	}
-	this.zoom=function(newZoom,pinX,pinY)
-	{
-		var ratio=newZoom/this.zoom;
-		this.ox=pinX-(pinX-this.ox)*ratio;
-		this.oy=pinY-(pinY-this.oy)*ratio;
-		this.zoom=newZoom;
-	}
-	this.setScreen=function()
-	{
-		translate(this.ox,this.oy);
-		translate(this.zoom);
-	}
-	this.relativeMouse=function()
-	{
-		var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
-		return res;
-	}
-})();
+}
+SCREEN_CONTROL.prototype.move=function(dx,dy)
+{
+	this.ox+=dx;
+	this.oy+=dy;
+}
+SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
+{
+	var ratio=newZoom/this.zoom;
+	this.ox=pinX-(pinX-this.ox)*ratio;
+	this.oy=pinY-(pinY-this.oy)*ratio;
+	this.zoom=newZoom;
+}
+SCREEN_CONTROL.prototype.setScreen=function()
+{
+	translate(this.ox,this.oy);
+	scale(this.zoom);
+}
+SCREEN_CONTROL.prototype.relativeMouse=function()
+{
+	var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
+	return res;
+}
