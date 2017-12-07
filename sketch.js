@@ -7,13 +7,12 @@ function setup() {
 function draw() { 
 	background(255);
 	screenControl.setScreen();
-	console.log(screenControl.zoom);
+	console.log(screenControl.ox, screenControl.oy);
 	grid();
 }
 function mouseWheel(event)
 {
 	var newZoom=screenControl.zoom+0.001*event.delta;
-	console.log(newZoom);
 	screenControl.scale(newZoom,mouseX,mouseY);
 }
 
