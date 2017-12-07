@@ -2,7 +2,7 @@ var screenControl;
 function setup() {
   createCanvas(400, 400);
 	screenControl=new SCREEN_CONTROL(400,400);
-} 
+}
 
 function draw() { 
   background(255);
