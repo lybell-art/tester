@@ -38,31 +38,31 @@ var screenControl=function(w,h)
 	this.ox=0;
 	this.oy=0;
 	this.zoom=1;
+	this.set=function(w,h)
+	{
+		this.ox=(width-w)/2;
+		this.oy=(height-h)/2;
+	}
+	this.move=function(dx,dy)
+	{
+		this.ox+=dx;
+		this.oy+=dy;
+	}
+	this.zoom=function(newZoom,pinX,pinY)
+	{
+		var ratio=newZoom/this.zoom;
+		this.ox=pinX-(pinX-this.ox)*ratio;
+		this.oy=pinY-(pinY-this.oy)*ratio;
+		this.zoom=newZoom;
+	}
+	this.setScreen=function()
+	{
+		translate(this.ox,this.oy);
+		translate(this.zoom);
+	}
+	this.relativeMouse=function()
+	{
+		var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
+		return res;
+	}
 };
-screenControl.prototype.setting=function(w,h)
-{
-	this.ox=(width-w)/2;
-	this.oy=(height-h)/2;
-}
-screenControl.prototype.move=function(dx,dy)
-{
-	this.ox+=dx;
-	this.oy+=dy;
-}
-screenControl.prototype.zoom=function(newZoom,pinX,pinY)
-{
-	var ratio=newZoom/this.zoom;
-	this.ox=pinX-(pinX-this.ox)*ratio;
-	this.oy=pinY-(pinY-this.oy)*ratio;
-	this.zoom=newZoom;
-}
-screenControl.prototype.setScreen=function()
-{
-	translate(this.ox,this.oy);
-	translate(this.zoom);
-}
-screenControl.prototype.relativeMouse=function()
-{
-	var res=createVector((mouseX-this.ox)/this.zoom,(mouseY-this.oy)/this.zoom);
-	return res;
-}
