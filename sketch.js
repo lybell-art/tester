@@ -1,6 +1,6 @@
 var screenControl;
 function setup() {
-	createCanvas(400, 400);
+	createCanvas(600, 600);
 	screenControl=new SCREEN_CONTROL(400,400);
 }
 
@@ -58,8 +58,8 @@ SCREEN_CONTROL.prototype.limit=function()
 	else this.ox=-wLimit/2;
 	if(hLimit<0) this.ox=constrain(this.ox,hLimit,0);
 	else this.ox=-hLimit/2;
-//	var zoomMin=min(width/this.w,height/this.h,1);
-//	this.zoom=constrain(this.zoom,zoomMin,4);
+	var zoomMin=min(width/this.w,height/this.h,1);
+	this.zoom=constrain(this.zoom,zoomMin,4);
 }
 SCREEN_CONTROL.prototype.setScreen=function()
 {
