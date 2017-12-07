@@ -42,11 +42,11 @@ function SCREEN_CONTROL(w,h)
 {
 	/**
 	 *
-	 * var {float} w	조작할 이미지의 너비
-	 * var {float} h	조작할 이미지의 높이
-	 * var {float} ox	원점의 x좌표
-	 * var {float} oy	원점의 y좌표
-	 * var {float} zoom	확대 배율
+	 * @var {float} w	조작할 이미지의 너비
+	 * @var {float} h	조작할 이미지의 높이
+	 * @var {float} ox	원점의 x좌표
+	 * @var {float} oy	원점의 y좌표
+	 * @var {float} zoom	확대 배율
 	 *
 	 */
 	this.w=w;
@@ -59,8 +59,8 @@ function SCREEN_CONTROL(w,h)
  *
  * 마우스 드래그에 따라 스크린을 움직이는 함수
  * 
- * param {float} dx		이동 거리의 x축 변화량
- * param {float} dy		이동 거리의 y축 변화량
+ * @param {float} dx		이동 거리의 x축 변화량
+ * @param {float} dy		이동 거리의 y축 변화량
  *
  */
 SCREEN_CONTROL.prototype.move=function(dx,dy)
@@ -73,9 +73,9 @@ SCREEN_CONTROL.prototype.move=function(dx,dy)
  *
  * 마우스의 현재 위치에 따라 확대, 축소하는 함수
  * 
- * param {float} newZoom	스케일링할 배율
- * param {float} pinX		기준 좌표의 X좌표(절대적)
- * param {float} pinY		기준 좌표의 Y좌표(절대적)
+ * @param {float} newZoom	스케일링할 배율
+ * @param {float} pinX		기준 좌표의 X좌표(절대적)
+ * @param {float} pinY		기준 좌표의 Y좌표(절대적)
  *
  */
 SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
@@ -88,8 +88,8 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 }
 /**
  *
- * 원점과 배율을 제한하는 함수
- * 배율은 최소 스크린 크기부터 최대 4배까지 조절됨
+ * @원점과 배율을 제한하는 함수
+ * @배율은 최소 스크린 크기부터 최대 4배까지 조절됨
  *
  */
 SCREEN_CONTROL.prototype.limit=function()
@@ -117,7 +117,7 @@ SCREEN_CONTROL.prototype.setScreen=function()
  *
  * 현재 이동, 스케일링 상태의 마우스 위치를 반환하는 함수
  * 
- * return {p5.Vector} res	상대적 마우스 위치
+ * @return {p5.Vector} res	상대적 마우스 위치
  *
  */
 SCREEN_CONTROL.prototype.relativeMouse=function()
