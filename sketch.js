@@ -5,7 +5,7 @@ function setup() {
 }
 
 function draw() { 
-	background(255);
+	background("#ffff00");
 	screenControl.setScreen();
 	console.log(screenControl.ox, screenControl.oy);
 	grid();
