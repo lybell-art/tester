@@ -13,7 +13,7 @@ function f()
 	background(128);
 	while(true)
 	{
-		if(mousePressed) return;
+		if(mouseIsPressed) return;
 		console.log("ccc");
 	}
 }
