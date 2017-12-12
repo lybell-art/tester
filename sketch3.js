@@ -1,6 +1,8 @@
 function setup() { 
   createCanvas(400, 400);
 	textSize(32);
+	fill(0);
+	stroke(0);
 } 
 
 function draw() { 
