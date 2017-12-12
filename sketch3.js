@@ -1,17 +1,18 @@
 function setup() { 
   createCanvas(400, 400);
-	textSize(32);
 	fill(0);
-	stroke(0);
 } 
 
-function draw() { 
-	
+function draw() {
 }
-
-function touchStart()
+function touchStarted()
 {
 	background(255);
-	for(var i=0;i<touches.length;i++)
-		text(touches[i],0,i*36);
+	console.log(touches);
+	if(touches.length==0) text("no recognization",50,50);
+	else text(touches,50,50);
+}
+function touchEnded()
+{
+	background(255);
 }
