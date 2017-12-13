@@ -67,6 +67,7 @@ function mousePressed()
 }
 function mouseDragged()
 {
+	console.log("c",broadcast.dmouseX,broadcast.dmouseY);
 	var deltaX=mouseX-broadcast.dmouseX;
 	var deltaY=mouseY-broadcast.dmouseY;
 	screenControl.move(deltaX,deltaY);
