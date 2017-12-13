@@ -214,11 +214,11 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 	var ratio=newZoom/this.zoom;
 	if(newZoom>4) ratio=4/this.zoom;
 	this.zoom=newZoom;
-	if(this.zoom<=4)
-	{
+//	if(this.zoom<=4)
+//	{
 		this.ox=pinX-(pinX-this.ox)*ratio;
 		this.oy=pinY-(pinY-this.oy)*ratio;
-	}
+//	}
 	this.limit();
 }
 /**
