@@ -230,7 +230,7 @@ SCREEN_CONTROL.prototype.limit=function()
 	if(abs(this.zoom-4)<0.0001) return;
 	var wLimit=width-this.w*this.zoom;
 	var hLimit=height-this.h*this.zoom;
-	console.log(this.zoom, wLimit, hLimit);
+	console.log(this.zoom, this.w, this.h, wLimit, hLimit);
 	if(wLimit<0) this.ox=constrain(this.ox,wLimit,0);
 	else this.ox=wLimit/2;
 	if(hLimit<0) this.oy=constrain(this.oy,hLimit,0);
