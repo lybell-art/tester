@@ -213,10 +213,13 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 {
 	var ratio=newZoom/this.zoom;
 	this.zoom=newZoom;
+	console.log(this.zoom);
 	if(abs(this.zoom-4)>=0.0001)
 	{
+		console.log(this.ox,this.oy);
 		this.ox=pinX-(pinX-this.ox)*ratio;
 		this.oy=pinY-(pinY-this.oy)*ratio;
+		console.log(this.ox,this.oy);
 	}
 	this.limit();
 }
