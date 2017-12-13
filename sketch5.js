@@ -215,7 +215,7 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 	this.zoom=newZoom;
 	var zoomMin=min(width/this.w,height/this.h,1);
 	this.zoom=constrain(this.zoom,zoomMin,4);
-	if(abs(this.zoom-4)<0.0001)
+	if(abs(this.zoom-4)>0.0001)
 	{
 		this.ox=pinX-(pinX-this.ox)*ratio;
 		this.oy=pinY-(pinY-this.oy)*ratio;
