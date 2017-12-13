@@ -171,8 +171,8 @@ BROADCAST.prototype.renew=function()
 	else if(this.isMousePress) this.wasMousePress=true;
 	if(mouseIsPressed)
 	{
-		this.dmouseX=pmouseX;
-		this.dmouseY=pmouseY;
+		this.dmouseX=mouseX;
+		this.dmouseY=mouseY;
 	}
 	console.log('b',this.dmouseX,this.dmouseY);
 }
