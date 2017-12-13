@@ -173,6 +173,7 @@ BROADCAST.prototype.renew=function()
 		this.dmouseX=pmouseX;
 		this.dmouseY=pmouseY;
 	}
+	console.log('b',this.dmouseX,this.dmouseY);
 }
 
 /**
@@ -212,7 +213,6 @@ function SCREEN_CONTROL(w,h)
  */
 SCREEN_CONTROL.prototype.move=function(dx,dy)
 {
-	console.log('b',dx,dy);
 	this.ox+=dx;
 	this.oy+=dy;
 	this.limit();
