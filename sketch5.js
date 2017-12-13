@@ -129,7 +129,9 @@ CELL.prototype.draw=function()
 }
 CELL.prototype.isMouseOn=function()
 {
-	var mousePos=createVector(mouseX-this.x,mouseY-this.y);
+	var mouse=screenControl.relativeMouse();
+	var mousePos=createVector(this.x,this.y);
+	mousePos.sub(mouse);
 	var edge=createVector(this.r,0);
 	var theta=0;
 	for(var i=0;i<6;i++)
