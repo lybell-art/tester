@@ -212,9 +212,12 @@ SCREEN_CONTROL.prototype.move=function(dx,dy)
 SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 {
 	var ratio=newZoom/this.zoom;
-	this.ox=pinX-(pinX-this.ox)*ratio;
-	this.oy=pinY-(pinY-this.oy)*ratio;
 	this.zoom=newZoom;
+	if(abs(this.zoom-4)>=0.0001)
+	{
+		this.ox=pinX-(pinX-this.ox)*ratio;
+		this.oy=pinY-(pinY-this.oy)*ratio;
+	}
 	this.limit();
 }
 /**
