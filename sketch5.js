@@ -226,15 +226,15 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 SCREEN_CONTROL.prototype.limit=function()
 {
 	var zoomMin=min(width/this.w,height/this.h,1);
-	console.log(this.zoom, zoomMin);
 	this.zoom=constrain(this.zoom,zoomMin,4);
-	console.log(this.zoom, zoomMin);
 	var wLimit=width-this.w*this.zoom;
 	var hLimit=height-this.h*this.zoom;
+	console.log(wLimit, hLimit);
 	if(wLimit<0) this.ox=constrain(this.ox,wLimit,0);
 	else this.ox=wLimit/2;
 	if(hLimit<0) this.oy=constrain(this.oy,hLimit,0);
 	else this.oy=hLimit/2;
+	console.log(this.ox,this.oy);
 }
 /**
  *
