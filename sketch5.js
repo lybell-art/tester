@@ -30,6 +30,7 @@ function draw()
 	background(255);
 	screenControl.setScreen();
 	broadcast.renew();
+	console.log(pmouseX,pmouseY);
 	if(broadcast.isMousePress)
 	{
 		for(i=0;i<maxHei;i++)
@@ -66,8 +67,8 @@ function mousePressed()
 }
 function mouseDragged()
 {
-	console.log(mouseX,mouseY);
-	console.log(broadcast.dmouseX,broadcast.dmouseY);
+//	console.log(mouseX,mouseY);
+//	console.log(broadcast.dmouseX,broadcast.dmouseY);
 	var deltaX=mouseX-broadcast.dmouseX;
 	var deltaY=mouseY-broadcast.dmouseY;
 	screenControl.move(deltaX,deltaY);
