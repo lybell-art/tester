@@ -30,7 +30,7 @@ function draw()
 	background(255);
 	screenControl.setScreen();
 	broadcast.renew();
-	console.log(pmouseX,pmouseY);
+	console.log('a',pmouseX,pmouseY);
 	if(broadcast.isMousePress)
 	{
 		for(i=0;i<maxHei;i++)
@@ -67,8 +67,6 @@ function mousePressed()
 }
 function mouseDragged()
 {
-//	console.log(mouseX,mouseY);
-//	console.log(broadcast.dmouseX,broadcast.dmouseY);
 	var deltaX=mouseX-broadcast.dmouseX;
 	var deltaY=mouseY-broadcast.dmouseY;
 	screenControl.move(deltaX,deltaY);
@@ -214,7 +212,7 @@ function SCREEN_CONTROL(w,h)
  */
 SCREEN_CONTROL.prototype.move=function(dx,dy)
 {
-	console.log(dx,dy);
+	console.log('b',dx,dy);
 	this.ox+=dx;
 	this.oy+=dy;
 	this.limit();
