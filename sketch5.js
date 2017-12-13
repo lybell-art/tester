@@ -61,6 +61,14 @@ function draw()
 function mousePressed()
 {
 	broadcast.isMousePress=true;
+	broadcast.dmouseX=mouseX;
+	broadcast.dmouseY=mouseY;
+}
+function mouseDragged()
+{
+	var deltaX=mouseX-broadcast.dmouseX;
+	var deltaY=mouseY-broadcast.dmouseY;
+	screenControl.move(deltaX,deltaY);
 }
 function mouseWheel(event)
 {
@@ -148,6 +156,8 @@ function BROADCAST()
 {
 	this.isMousePress=false;
 	this.wasMousePress=false;
+	this.dmouseX=mouseX;
+	this.dmouseY=mouseY;
 }
 BROADCAST.prototype.renew=function()
 {
@@ -157,6 +167,11 @@ BROADCAST.prototype.renew=function()
 		this.wasMousePress=false;
 	}
 	else if(this.isMousePress) this.wasMousePress=true;
+	if(mouseIsPressed)
+	{
+		this.dmouseX=pmouseX;
+		this.dmouseY=pmouseY;
+	}
 }
 
 /**
