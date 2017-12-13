@@ -211,6 +211,7 @@ function SCREEN_CONTROL(w,h)
  */
 SCREEN_CONTROL.prototype.move=function(dx,dy)
 {
+	console.log(dx,dy);
 	this.ox+=dx;
 	this.oy+=dy;
 	this.limit();
@@ -229,11 +230,8 @@ SCREEN_CONTROL.prototype.scale=function(newZoom,pinX,pinY)
 	var ratio=newZoom/this.zoom;
 	if(newZoom>4) ratio=4/this.zoom;
 	this.zoom=newZoom;
-//	if(this.zoom<=4)
-//	{
-		this.ox=pinX-(pinX-this.ox)*ratio;
-		this.oy=pinY-(pinY-this.oy)*ratio;
-//	}
+	this.ox=pinX-(pinX-this.ox)*ratio;
+	this.oy=pinY-(pinY-this.oy)*ratio;
 	this.limit();
 }
 /**
@@ -246,10 +244,8 @@ SCREEN_CONTROL.prototype.limit=function()
 {
 	var zoomMin=min(width/this.w,height/this.h,1);
 	this.zoom=constrain(this.zoom,zoomMin,4);
-//	if(abs(this.zoom-4)<0.0001) return;
 	var wLimit=width-this.w*this.zoom;
 	var hLimit=height-this.h*this.zoom;
-	console.log(this.zoom, this.w, this.h, wLimit, hLimit);
 	if(wLimit<0) this.ox=constrain(this.ox,wLimit,0);
 	else this.ox=wLimit/2;
 	if(hLimit<0) this.oy=constrain(this.oy,hLimit,0);
