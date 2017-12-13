@@ -1,16 +1,24 @@
 var broadcast;
 var cell=[];
 var editMode=2;
+var changeButton, saveButton;
+var maxWid=50, maxHei=50;
 function setup()
 {
 	createCanvas(windowWidth,windowHeight);
 	broadcast=new BROADCAST();
-	for(var i=0;i<10;i++)
+	changeButton=createButton("mode Change");
+	saveButton=createButton("save");
+	changeButton.position(0,0);
+	saveButton.position(width-saveButton.width,0);
+	changeButton.mousePressed(modeChange);
+	saveButton.mousePressed(exportMap);
+	for(var i=0;i<maxHei;i++)
 	{
 		cell[i]=[];
-		for(var j=0;j<10;j++)
+		for(var j=0;j<maxWid;j++)
 		{
-			cell[i][j]=new CELL(i,j,1,0);
+			cell[i][j]=new CELL(i,j,0,0);
 		}
 	}
 }
@@ -21,9 +29,9 @@ function draw()
 	broadcast.renew();
 	if(broadcast.isMousePress)
 	{
-		for(i=0;i<10;i++)
+		for(i=0;i<maxHei;i++)
 		{
-			for(j=0;j<10;j++)
+			for(j=0;j<maxWid;j++)
 			{
 				if(cell[i][j].isMouseOn())
 				{
@@ -39,9 +47,9 @@ function draw()
 			}
 		}
 	}
-	for(i=0;i<10;i++)
+	for(i=0;i<maxHei;i++)
 	{
-		for(j=0;j<10;j++)
+		for(j=0;j<maxWid;j++)
 		{
 			cell[i][j].draw();
 		}
@@ -50,6 +58,13 @@ function draw()
 function mousePressed()
 {
 	broadcast.isMousePress=true;
+}
+function modeChange()
+{
+	editMode=(editMode+1)%2+1;
+}
+function exportMap()
+{
 }
 
 function CELL(i,j,kind,who)
@@ -102,6 +117,7 @@ CELL.prototype.draw=function()
 	}
 	endShape(CLOSE);
 	console.log(this.x,this.y);
+	fill(0);
 	text(this.kind,this.x,this.y);
 }
 CELL.prototype.isMouseOn=function()
