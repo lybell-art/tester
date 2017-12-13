@@ -8,7 +8,7 @@ function setup()
 {
 	createCanvas(windowWidth,windowHeight);
 	broadcast=new BROADCAST();
-	screenControl=new SCREEN_CONTROL(45*(1.5*maxWid-0.5),45*cos(PI/6)*(maxHei+2));
+	screenControl=new SCREEN_CONTROL(45*(1.5*maxWid-0.5),45*cos(PI/6)*(2*maxHei+1));
 	changeButton=createButton("mode Change");
 	saveButton=createButton("save");
 	changeButton.position(0,0);
