@@ -116,7 +116,6 @@ CELL.prototype.draw=function()
 		edge.rotate(PI/3);
 	}
 	endShape(CLOSE);
-	console.log(this.x,this.y);
 	fill(0);
 	text(this.kind,this.x,this.y);
 }
