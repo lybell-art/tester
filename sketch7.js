@@ -7,11 +7,9 @@ function setup() {
 	for(i=0;i<6;i++) table.addColumn();
   for(i=0;i<10;i++)
   {
-		console.log("a");
     for(j=0;j<6;j++)
     {
-      table.set(i,j,"1");
-			console.log("a");
+      table.set(i,j,random(255));
     }
   }
 	for(i=0;i<10;i++)
